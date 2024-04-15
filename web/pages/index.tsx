@@ -1,24 +1,29 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, MouseEvent } from 'react';
 import client from '../client'
 import SidebarComponent from '../components/organisms/Sidebar';
 import MapComponent from '../components/organisms/Map';
 import { Button, Modal } from "flowbite-react";
+import { SanityDocument } from '@sanity/client';
 
-const Home = ({data}) => {
+interface HomeProps {
+  data: any;
+}
+
+const Home = ({ data }: HomeProps) => {
   
   const [openModal, setOpenModal] = useState(true);
-  const [markers, setMarkers] = useState([]);
-  const mapRef = useRef(null);
+  const [markers, setMarkers] = useState<any[]>([]);
+  const mapRef = useRef<any | null>(null);
 
-  const getCoordinates = (marker, isLatitude) => {
-    const mapInstance = mapRef.current.getMap();
+  const getCoordinates = (marker: any, isLatitude: boolean) => {
+    const mapInstance = mapRef.current?.getMap();
     // Convert pixel coordinates to geographical coordinates
     const coordinates = mapInstance.unproject([marker.clientX, marker.clientY]);
     
     return isLatitude ? coordinates.lat : coordinates.lng;
   };
 
-  const handleNewMarkerDragEnd = (item, event) => {
+  const handleNewMarkerDragEnd = (item: any, event: MouseEvent) => {
 
     // Create a new marker based on the clicked item and cursor's position
     const newMarker = {
@@ -33,7 +38,7 @@ const Home = ({data}) => {
     setMarkers([...markers, newMarker]);
   };
 
-  const handleMarkerDragEnd = (markerId, newCoordinates, event) => {
+  const handleMarkerDragEnd = (markerId: any, newCoordinates: any, event: MouseEvent) => {
     // Update the coordinates of the dragged marker
     setMarkers((prevMarkers) => {
       const updatedMarkers = prevMarkers.map((marker) => {

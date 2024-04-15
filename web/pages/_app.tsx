@@ -5,7 +5,7 @@ import Head from "next/head";
 import Script from "next/script";
 import Router from "next/router";
 
-function MyApp({ Component, pageProps, router }) {
+function MyApp({ Component, pageProps, router }: AppProps) {
   return  (
     <>
       <Script
