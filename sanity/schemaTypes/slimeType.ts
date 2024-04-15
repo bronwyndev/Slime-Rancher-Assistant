@@ -19,5 +19,11 @@ export const slimeType = defineType({
       type: 'reference',
       to: [{type: 'food'}],
     }),
+    defineField({
+      name: 'language',
+      type: 'string',
+      readOnly: true,
+      hidden: true,
+    })
   ],
 })
