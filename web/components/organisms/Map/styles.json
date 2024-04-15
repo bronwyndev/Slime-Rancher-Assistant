@@ -1,0 +1,25 @@
+{
+    "version": 8,
+    "sources": {
+      "custom-map": {
+        "type": "image",
+        "url": "http://cdn.sanity.io/images/9yc4oudn/production/915949e4b4ae04afafa80f4f6369d13a3e5eeb46-3987x2971.webp",
+        "coordinates": [
+          [-180, 85],
+          [180, 85],
+          [180, -85],
+          [-180, -85]
+        ]
+      }
+    },
+    "layers": [
+      {
+        "id": "custom-map-layer",
+        "type": "raster",
+        "source": "custom-map",
+        "layout": {},
+        "paint": {}
+      }
+    ]
+  }
+  
