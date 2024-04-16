@@ -87,16 +87,16 @@ const Home = ({ data }: HomeProps) => {
 }
 
 export async function getStaticProps() {
-  const slimesQuery = `*[_type == "slime"] | order(date desc) { _id, name, icon, date }`;
+  const slimesQuery = `*[_type == "slime"] | order(_createdAt asc) { _id, name, icon }`;
   const slimesList = await client.fetch<SanityDocument[]>(slimesQuery);
 
-  const foodQuery = `*[_type == "food"] | order(date desc) { _id, name, icon, date }`;
+  const foodQuery = `*[_type == "food"] | order(_createdAt asc) { _id, name, icon }`;
   const foodList = await client.fetch<SanityDocument[]>(foodQuery);
 
-  const buildingQuery = `*[_type == "building"] | order(date desc) { _id, name, icon, date }`;
+  const buildingQuery = `*[_type == "building"] | order(_createdAt asc) { _id, name, icon }`;
   const buildingList = await client.fetch<SanityDocument[]>(buildingQuery);
 
-  const gadgetQuery = `*[_type == "gadget"] | order(date desc) { _id, name, icon, date }`;
+  const gadgetQuery = `*[_type == "gadget"] | order(_createdAt asc) { _id, name, icon }`;
   const gadgetList = await client.fetch<SanityDocument[]>(gadgetQuery);
   return {
     props: {
