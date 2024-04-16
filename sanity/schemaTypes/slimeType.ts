@@ -24,6 +24,6 @@ export const slimeType = defineType({
       type: 'string',
       readOnly: true,
       hidden: true,
-    })
+    }),
   ],
 })

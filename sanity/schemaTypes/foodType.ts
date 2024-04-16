@@ -13,5 +13,11 @@ export const foodType = defineType({
       name: 'icon',
       type: 'image',
     }),
+    defineField({
+      name: 'language',
+      type: 'string',
+      readOnly: true,
+      hidden: true,
+    }),
   ],
 })
