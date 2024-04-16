@@ -51,66 +51,66 @@ const SidebarComponent = ({ data, onNewMarkerDragEnd }) => {
           <Sidebar.Collapse label="Food">
             <Sidebar.Item>
               <div className="grid grid-cols-4 gap-3">
-                {/*data.foodList.map(food => {
+                {data.foodList.map(food => {
                       return (
                         <div 
-                          key={food.id} 
+                          key={food._id} 
                           onDragEnd={() => onNewMarkerDragEnd(food, event)}
                           draggable
                         >
                           <img
-                            src= {process.env.NEXT_PUBLIC_API_URL + food.attributes.Icon.data.attributes.url}
-                            alt={food.attributes.Name}
+                            src= {urlFor(food.icon).url()}
+                            alt={food.name}
                             className="w-8"
                           >
                           </img>
                         </div>
                       )
-                })*/}
+                })}
               </div>
             </Sidebar.Item>
           </Sidebar.Collapse>
           <Sidebar.Collapse label="Buildings">
             <Sidebar.Item>
               <div className="grid grid-cols-4 gap-3">
-                {/*data.buildingList.map(building => {
+                {data.buildingList.map(building => {
                       return (
                         <div 
-                          key={building.id} 
+                          key={building._id} 
                           onDragEnd={() => onNewMarkerDragEnd(building, event)}
                           draggable
                         >
                           <img
-                            src= {process.env.NEXT_PUBLIC_API_URL + building.attributes.Icon.data.attributes.url}
-                            alt={building.attributes.Name}
+                            src= {urlFor(building.icon).url()}
+                            alt={building.name}
                             className="w-8"
                           >
                           </img>
                         </div>
                       )
-                })*/}
+                })}
               </div>
             </Sidebar.Item>
           </Sidebar.Collapse>
           <Sidebar.Collapse label="Gadgets">
             <Sidebar.Item>
               <div className="grid grid-cols-4 gap-3">
-                {/*data.gadgetList.map(gadget => {
+                {data.gadgetList.map(gadget => {
                       return (
                         <div 
-                          key={gadget.id} 
+                          key={gadget._id} 
                           onDragEnd={() => onNewMarkerDragEnd(gadget, event)}
                           draggable
                         >
                           <img
-                            src= {process.env.NEXT_PUBLIC_API_URL + gadget.attributes.Icon.data.attributes.url}
-                            alt={gadget.attributes.Name}
+                            src= {urlFor(gadget.icon).url()}
+                            alt={gadget.name}
                             className="w-8"
                           >
                           </img>
                         </div>
                       )
-                })*/}
+                })}
               </div>
             </Sidebar.Item>
           </Sidebar.Collapse>
