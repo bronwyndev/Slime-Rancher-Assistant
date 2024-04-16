@@ -58,12 +58,14 @@ const SidebarComponent = ({ data, onNewMarkerDragEnd }) => {
                           onDragEnd={() => onNewMarkerDragEnd(food, event)}
                           draggable
                         >
-                          <img
-                            src= {urlFor(food.icon).url()}
-                            alt={food.name}
-                            className="w-8"
-                          >
-                          </img>
+                          <Tooltip content={food.name} style="light">
+                            <img
+                              src= {urlFor(food.icon).url()}
+                              alt={food.name}
+                              className="w-8"
+                            >
+                            </img>
+                          </Tooltip>
                         </div>
                       )
                 })}
@@ -80,12 +82,14 @@ const SidebarComponent = ({ data, onNewMarkerDragEnd }) => {
                           onDragEnd={() => onNewMarkerDragEnd(building, event)}
                           draggable
                         >
-                          <img
-                            src= {urlFor(building.icon).url()}
-                            alt={building.name}
-                            className="w-8"
-                          >
-                          </img>
+                          <Tooltip content={building.name} style="light">
+                            <img
+                              src= {urlFor(building.icon).url()}
+                              alt={building.name}
+                              className="w-8"
+                            >
+                            </img>
+                          </Tooltip>
                         </div>
                       )
                 })}
@@ -102,12 +106,14 @@ const SidebarComponent = ({ data, onNewMarkerDragEnd }) => {
                           onDragEnd={() => onNewMarkerDragEnd(gadget, event)}
                           draggable
                         >
-                          <img
-                            src= {urlFor(gadget.icon).url()}
-                            alt={gadget.name}
-                            className="w-8"
-                          >
-                          </img>
+                          <Tooltip content={gadget.name} style="light">
+                            <img
+                              src= {urlFor(gadget.icon).url()}
+                              alt={gadget.name}
+                              className="w-8"
+                            >
+                            </img>
+                          </Tooltip>
                         </div>
                       )
                 })}
