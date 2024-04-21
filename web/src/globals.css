@@ -4,11 +4,8 @@
 
 body {
     background-image: url('https://cdn.sanity.io/images/9yc4oudn/production/15ed08f68ac24b2418aae2f5d83b4140ff5865fb-480x240.jpg');
-    animation-name: moveBackground;
-    animation-duration: 8s; /* Adjust the duration based on the number of keyframes */
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
     transition: ease 0.8s;
+    animation: moveDiagonal 35s infinite linear;
 }
 
 .options-sidebar {
@@ -18,20 +15,38 @@ body {
     max-height: calc(100vh - 3rem);
 }
 
-@keyframes moveBackground {
-    0% {
-      background-position: 0 0;
-    }
-    25% {
-      background-position: 10px -10px;
-    }
-    50% {
-      background-position: 20px 0;
-    }
-    75% {
-      background-position: 30px -10px;
-    }
-    100% {
-      background-position: 40px 0;
-    }
+@keyframes moveDiagonal {
+  0% {
+    background-position: 0% 0%; /* Start position: top-left corner */
   }
+  10% {
+    background-position: 10% 10%;
+  }
+  20% {
+    background-position: 20% 0%;
+  }
+  30% {
+    background-position: 30% 10%;
+  }
+  40% {
+    background-position: 40% 0%;
+  }
+  50% {
+    background-position: 50% 10%; /* Mid position: center */
+  }
+  60% {
+    background-position: 60% 0%;
+  }
+  70% {
+    background-position: 70% 10%;
+  }
+  80% {
+    background-position: 80% 0%;
+  }
+  90% {
+    background-position: 90% 10%;
+  }
+  100% {
+    background-position: 100% 0%, 0% 0%; /* End position: top-right corner */
+  }
+}
