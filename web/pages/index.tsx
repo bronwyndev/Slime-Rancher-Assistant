@@ -12,6 +12,7 @@ interface HomeProps {
 const Home = ({ data }: HomeProps) => {
   
   const [openModal, setOpenModal] = useState(true);
+  const [removeButton, setremoveButton] = useState(true);
   const [markers, setMarkers] = useState<any[]>([]);
   const mapRef = useRef<any | null>(null);
 
@@ -54,6 +55,14 @@ const Home = ({ data }: HomeProps) => {
 
   };
 
+  // Function to remove a marker by its ID
+  const handleRemoveMarker = (markerId: any) => {
+    // Filter out the marker with the given ID
+    const filteredMarkers = markers.filter((marker) => marker.id !== markerId);
+    // Update the markers state
+    setMarkers(filteredMarkers);
+  };
+
   return (
     <div className="h-screen">
       <Modal dismissible show={openModal} onClose={() => setOpenModal(false)}>
@@ -81,6 +90,7 @@ const Home = ({ data }: HomeProps) => {
         mapRef={mapRef}
         markers={markers}
         onExistingMarkerDragEnd={handleMarkerDragEnd}
+        onExisitingMarkerRemove={handleRemoveMarker}
       />
     </div>
   )
