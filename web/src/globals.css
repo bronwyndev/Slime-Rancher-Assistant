@@ -50,3 +50,12 @@ body {
     background-position: 100% 0%, 0% 0%; /* End position: top-right corner */
   }
 }
+
+.remove-icon {
+  position: absolute;
+  top: -15px;
+  right: -10px;
+  svg {
+    color: #b71c1c;
+  }
+}
