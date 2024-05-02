@@ -10,6 +10,10 @@ export const gordoType = defineType({
       type: 'string',
     }),
     defineField({
+      name: 'description',
+      type: 'string',
+    }),
+    defineField({
       name: 'icon',
       type: 'image',
     }),
