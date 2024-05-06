@@ -34,6 +34,7 @@ const Home = ({ data }: HomeProps) => {
       x: event.pageX,
       y: event.pageY,
       item: item, // Store the item data
+      draggable: true,
     };
 
     setMarkers([...markers, newMarker]);

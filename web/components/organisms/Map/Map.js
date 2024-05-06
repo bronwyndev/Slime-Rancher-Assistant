@@ -66,7 +66,7 @@ const MapComponent = ({ mapRef, markers, onExistingMarkerDragEnd, onExisitingMar
           style={{
             zIndex: 100,
           }}
-          draggable
+          draggable={marker.draggable}
           onDragEnd={(event) => onExistingMarkerDragEnd(marker.id, event.lngLat, event)}
         >
           <div>          
