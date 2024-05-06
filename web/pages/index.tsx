@@ -96,28 +96,27 @@ const Home = ({ data }: HomeProps) => {
   )
 }
 
+async function fetchData(type: string): Promise<SanityDocument[]> {
+  const query = `*[_type == "${type}"] | order(_createdAt asc) { _id, name, icon }`;
+  return await client.fetch<SanityDocument[]>(query);
+}
+
 export async function getStaticProps() {
-  const slimesQuery = `*[_type == "slime"] | order(_createdAt asc) { _id, name, icon }`;
-  const slimesList = await client.fetch<SanityDocument[]>(slimesQuery);
+  const [slimesList, foodList, buildingList, gadgetList, gordoList] = await Promise.all([
+    fetchData("slime"),
+    fetchData("food"),
+    fetchData("building"),
+    fetchData("gadget"),
+    fetchData("gordo"),
+  ]);
 
-  const foodQuery = `*[_type == "food"] | order(_createdAt asc) { _id, name, icon }`;
-  const foodList = await client.fetch<SanityDocument[]>(foodQuery);
+  const data = { slimesList, foodList, buildingList, gadgetList, gordoList };
 
-  const buildingQuery = `*[_type == "building"] | order(_createdAt asc) { _id, name, icon }`;
-  const buildingList = await client.fetch<SanityDocument[]>(buildingQuery);
-
-  const gadgetQuery = `*[_type == "gadget"] | order(_createdAt asc) { _id, name, icon }`;
-  const gadgetList = await client.fetch<SanityDocument[]>(gadgetQuery);
   return {
     props: {
-      data: {
-        slimesList, // pass slimesList as data
-        foodList, // pass foodList as data
-        buildingList, // pass buildingList as data
-        gadgetList, // pass gadgetList as data
-      }
-    }
-  }
+      data,
+    },
+  };
 }
 
 export default Home
