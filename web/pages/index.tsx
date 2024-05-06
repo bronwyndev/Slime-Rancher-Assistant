@@ -1,4 +1,4 @@
-import React, { useState, useRef, MouseEvent } from 'react';
+import React, { useState, useRef, useEffect, MouseEvent } from 'react';
 import client from '../client'
 import SidebarComponent from '../components/organisms/Sidebar';
 import MapComponent from '../components/organisms/Map';
@@ -63,6 +63,24 @@ const Home = ({ data }: HomeProps) => {
     setMarkers(filteredMarkers);
   };
 
+  const setDefaultMarkers = (gordoList: any[]) => {
+    const defaultMarkers = gordoList.map((item, index) => ({
+      id: index + 1,
+      latitude: item.latitude, // Assuming latitude property exists in gordoList items
+      longitude: item.longitude, // Assuming longitude property exists in gordoList items
+      item: item, // Store the item data
+      draggable: false,
+    }));
+  
+    setMarkers(defaultMarkers);
+  };
+
+  useEffect(() => {
+    if (data.gordoList) {
+      setDefaultMarkers(data.gordoList);
+    }
+  }, [data.gordoList]);
+
   return (
     <div className="h-screen">
       <Modal dismissible show={openModal} onClose={() => setOpenModal(false)}>
@@ -97,7 +115,7 @@ const Home = ({ data }: HomeProps) => {
 }
 
 async function fetchData(type: string): Promise<SanityDocument[]> {
-  const query = `*[_type == "${type}"] | order(_createdAt asc) { _id, name, icon }`;
+  const query = `*[_type == "${type}"] | order(_createdAt asc) { _id, name, icon, latitude, longitude }`;
   return await client.fetch<SanityDocument[]>(query);
 }
 
