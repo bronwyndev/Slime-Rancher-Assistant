@@ -89,7 +89,7 @@ const Home = ({ data }: HomeProps) => {
         <Modal.Body>
           <div className="space-y-6">
             <p className="text-base leading-relaxed text-gray-500 dark:text-gray-400">
-              This project is built by <a className="text-sm text-cyan-900 underline hover:text-cyan-800 dark:text-gray-400 dark:hover:text-gray-300" href="https://motherofchownz.github.io/portfolio/" target="_blank">Bronwyn</a> with ❤ to provide a visual assistant for the Slime Rancher game.
+              This project is built by <a className="text-sm text-cyan-900 underline hover:text-cyan-800 dark:text-gray-400 dark:hover:text-gray-300" href="https://bronwynwaterhouse.com" target="_blank">Bronwyn</a> with ❤ to provide a visual assistant for the Slime Rancher game.
               No profit is being made from this project and all assets are owned by <a className="text-sm text-cyan-900 underline hover:text-cyan-800 dark:text-gray-400 dark:hover:text-gray-300" href="http://www.monomipark.com/" target="_blank">Monomi Park</a>.
             </p>
             <p className="text-base leading-relaxed text-gray-500 dark:text-gray-400">
