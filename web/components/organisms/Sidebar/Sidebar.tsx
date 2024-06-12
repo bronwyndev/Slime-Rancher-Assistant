@@ -2,17 +2,46 @@ import React, { useState } from 'react';
 import { Badge, Tooltip, Sidebar } from 'flowbite-react';
 import client from '../../../client'
 import imageUrlBuilder from '@sanity/image-url'
+import { SanityImageSource } from '@sanity/image-url/lib/types/types';
 
-const builder = imageUrlBuilder({
-  ...client.config(),
+const clientConfig = client.config();
+const config = {
+  ...clientConfig,
+  projectId: clientConfig.projectId || 'default_project_id',
+  dataset: clientConfig.dataset || 'default_dataset', // replace 'default_dataset' with a valid default value
   baseUrl: 'https://cdn.sanity.io',
-})
+};
 
-function urlFor(source) {
+const builder = imageUrlBuilder(config);
+
+function urlFor(source: SanityImageSource) {
   return builder.image(source)
 }
 
-const SidebarComponent = ({ data, onNewMarkerDragEnd }) => {
+interface Data {
+  slimesList: {
+    _id: string;
+    name: string;
+    icon: string;
+  }[];
+  foodList: {
+    _id: string;
+    name: string;
+    icon: string;
+  }[];
+  buildingList: {
+    _id: string;
+    name: string;
+    icon: string;
+  }[];
+  gadgetList: {
+    _id: string;
+    name: string;
+    icon: string;
+  }[];
+}
+
+const SidebarComponent = ({ data, onNewMarkerDragEnd }: { data: Data; onNewMarkerDragEnd: Function }) => {
   
   const [isVisible, setIsVisible] = useState(true);
 
