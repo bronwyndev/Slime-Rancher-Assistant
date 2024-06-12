@@ -1,22 +1,6 @@
 import React, { useState } from 'react';
 import { Badge, Tooltip, Sidebar } from 'flowbite-react';
-import client from '../../../client'
-import imageUrlBuilder from '@sanity/image-url'
-import { SanityImageSource } from '@sanity/image-url/lib/types/types';
-
-const clientConfig = client.config();
-const config = {
-  ...clientConfig,
-  projectId: clientConfig.projectId || 'default_project_id',
-  dataset: clientConfig.dataset || 'default_dataset',
-  baseUrl: 'https://cdn.sanity.io',
-};
-
-const builder = imageUrlBuilder(config);
-
-function urlFor(source: SanityImageSource) {
-  return builder.image(source)
-}
+import urlFor from '../../../utils/imageBuilder';
 
 interface Data {
   slimesList: {

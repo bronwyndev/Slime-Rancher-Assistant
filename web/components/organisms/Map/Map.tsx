@@ -2,25 +2,19 @@ import React, { useState } from 'react';
 import Map, { Marker } from 'react-map-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import customMapStyle from './styles.json';
-import client from '../../../client'
-import imageUrlBuilder from '@sanity/image-url'
-import { SanityImageSource } from '@sanity/image-url/lib/types/types';
+import urlFor from '../../../utils/imageBuilder';
 
-const clientConfig = client.config();
-const config = {
-  ...clientConfig,
-  projectId: clientConfig.projectId || 'default_project_id',
-  dataset: clientConfig.dataset || 'default_dataset',
-  baseUrl: 'https://cdn.sanity.io',
-};
-
-const builder = imageUrlBuilder(config);
-
-function urlFor(source: SanityImageSource) {
-  return builder.image(source)
-}
-
-const MapComponent = ({ mapRef, markers, onExistingMarkerDragEnd, onExisitingMarkerRemove }: { mapRef: React.RefObject<HTMLDivElement>, markers: any[], onExistingMarkerDragEnd: Function, onExisitingMarkerRemove: Function }) => {
+const MapComponent = ({ 
+  mapRef, 
+  markers, 
+  onExistingMarkerDragEnd, 
+  onExisitingMarkerRemove 
+}: { 
+  mapRef: React.RefObject<HTMLDivElement>, 
+  markers: any[], 
+  onExistingMarkerDragEnd: Function, 
+  onExisitingMarkerRemove: Function 
+}) => {
 
   const [selectedMarkerIds, setSelectedMarkerIds] = useState<string[]>([]);
   const [viewport, setViewport] = useState({
