@@ -163,7 +163,7 @@ const SidebarComponent = ({ data, onNewMarkerDragEnd }) => {
           <li>
             <a
               className="text-sm text-cyan-900 underline hover:text-cyan-800 dark:text-gray-400 dark:hover:text-gray-300"
-              href="https://motherofchownz.github.io/portfolio/"
+              href="https://bronwynwaterhouse.com"
               target="_blank"
             >
               Or, check out my portfolio
