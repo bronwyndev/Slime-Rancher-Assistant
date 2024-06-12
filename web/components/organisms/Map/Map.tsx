@@ -37,15 +37,6 @@ const MapComponent = ({
     }
   };
 
-  const handleMarkerRemove = (markerId: string) => {
-    // Filter out the marker with the selected ID
-    const filteredMarkers = markers.filter((marker) => marker.id !== markerId);
-    // Update the markers state
-    setMarkers(filteredMarkers);
-    // Remove the marker ID from the selectedMarkerIds state
-    setSelectedMarkerIds(selectedMarkerIds.filter((id) => id !== markerId));
-  };
-
   return (
     <Map
       ref={mapRef}
