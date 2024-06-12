@@ -1,8 +1,10 @@
 import React, { useState, RefObject } from 'react';
 import Map, { MapRef, Marker } from 'react-map-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
-import customMapStyle from './styles.json';
+import { Style, AnyLayer } from 'mapbox-gl';
 import urlFor from '../../../utils/imageBuilder';
+
+const customMapStyle: Style = require('./styles.json');
 
 const MapComponent = ({ 
   mapRef, 
