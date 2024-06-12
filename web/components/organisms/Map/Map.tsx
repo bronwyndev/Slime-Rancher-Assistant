@@ -1,26 +1,22 @@
-import React, { useState } from 'react';
-import Map, { Marker } from 'react-map-gl';
+import React, { useState, RefObject } from 'react';
+import Map, { MapRef, Marker } from 'react-map-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
-import customMapStyle from './styles.json';
-import client from '../../../client'
-import imageUrlBuilder from '@sanity/image-url'
-import { SanityImageSource } from '@sanity/image-url/lib/types/types';
+import { Style, AnyLayer } from 'mapbox-gl';
+import urlFor from '../../../utils/imageBuilder';
 
-const clientConfig = client.config();
-const config = {
-  ...clientConfig,
-  projectId: clientConfig.projectId || 'default_project_id',
-  dataset: clientConfig.dataset || 'default_dataset',
-  baseUrl: 'https://cdn.sanity.io',
-};
+const customMapStyle: Style = require('./styles.json');
 
-const builder = imageUrlBuilder(config);
-
-function urlFor(source: SanityImageSource) {
-  return builder.image(source)
-}
-
-const MapComponent = ({ mapRef, markers, onExistingMarkerDragEnd, onExisitingMarkerRemove }: { mapRef: React.RefObject<HTMLDivElement>, markers: any[], onExistingMarkerDragEnd: Function, onExisitingMarkerRemove: Function }) => {
+const MapComponent = ({ 
+  mapRef, 
+  markers, 
+  onExistingMarkerDragEnd, 
+  onExisitingMarkerRemove 
+}: { 
+  mapRef: RefObject<MapRef>,
+  markers: any[], 
+  onExistingMarkerDragEnd: Function, 
+  onExisitingMarkerRemove: Function 
+}) => {
 
   const [selectedMarkerIds, setSelectedMarkerIds] = useState<string[]>([]);
   const [viewport, setViewport] = useState({
@@ -43,25 +39,12 @@ const MapComponent = ({ mapRef, markers, onExistingMarkerDragEnd, onExisitingMar
     }
   };
 
-  const handleMarkerRemove = (markerId: string) => {
-    // Filter out the marker with the selected ID
-    const filteredMarkers = markers.filter((marker) => marker.id !== markerId);
-    // Update the markers state
-    setMarkers(filteredMarkers);
-    // Remove the marker ID from the selectedMarkerIds state
-    setSelectedMarkerIds(selectedMarkerIds.filter((id) => id !== markerId));
-  };
-
   return (
     <Map
       ref={mapRef}
       renderWorldCopies={false}
       initialViewState={viewport}
       mapStyle={customMapStyle}
-      containerStyle={{
-        height: '100vh',
-        width: '100vw'
-      }}
       mapboxAccessToken="pk.eyJ1IjoibW90aGVyb2ZjaG93bnoiLCJhIjoiY2xvbzd4OTc5MWplZDJxbW9tM3hveDQ1diJ9.3LXtYaK0r3Wzwt2nKJch9g" //{process.env.REACT_APP_MAPBOX_TOKEN}
     >
       {markers.map((marker) => (
