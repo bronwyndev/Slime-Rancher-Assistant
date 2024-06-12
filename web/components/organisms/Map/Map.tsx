@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import Map, { Marker } from 'react-map-gl';
+import React, { useState, RefObject } from 'react';
+import Map, { MapRef, Marker } from 'react-map-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import customMapStyle from './styles.json';
 import urlFor from '../../../utils/imageBuilder';
@@ -10,7 +10,7 @@ const MapComponent = ({
   onExistingMarkerDragEnd, 
   onExisitingMarkerRemove 
 }: { 
-  mapRef: React.RefObject<HTMLDivElement>, 
+  mapRef: RefObject<MapRef>,
   markers: any[], 
   onExistingMarkerDragEnd: Function, 
   onExisitingMarkerRemove: Function 
