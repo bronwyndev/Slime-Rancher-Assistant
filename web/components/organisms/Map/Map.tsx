@@ -45,10 +45,6 @@ const MapComponent = ({
       renderWorldCopies={false}
       initialViewState={viewport}
       mapStyle={customMapStyle}
-      containerStyle={{
-        height: '100vh',
-        width: '100vw'
-      }}
       mapboxAccessToken="pk.eyJ1IjoibW90aGVyb2ZjaG93bnoiLCJhIjoiY2xvbzd4OTc5MWplZDJxbW9tM3hveDQ1diJ9.3LXtYaK0r3Wzwt2nKJch9g" //{process.env.REACT_APP_MAPBOX_TOKEN}
     >
       {markers.map((marker) => (
