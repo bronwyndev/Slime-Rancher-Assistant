@@ -4,19 +4,25 @@ import 'mapbox-gl/dist/mapbox-gl.css';
 import customMapStyle from './styles.json';
 import client from '../../../client'
 import imageUrlBuilder from '@sanity/image-url'
+import { SanityImageSource } from '@sanity/image-url/lib/types/types';
 
-const builder = imageUrlBuilder({
-  ...client.config(),
+const clientConfig = client.config();
+const config = {
+  ...clientConfig,
+  projectId: clientConfig.projectId || 'default_project_id',
+  dataset: clientConfig.dataset || 'default_dataset',
   baseUrl: 'https://cdn.sanity.io',
-})
+};
 
-function urlFor(source) {
+const builder = imageUrlBuilder(config);
+
+function urlFor(source: SanityImageSource) {
   return builder.image(source)
 }
 
-const MapComponent = ({ mapRef, markers, onExistingMarkerDragEnd, onExisitingMarkerRemove }) => {
+const MapComponent = ({ mapRef, markers, onExistingMarkerDragEnd, onExisitingMarkerRemove }: { mapRef: React.RefObject<HTMLDivElement>, markers: any[], onExistingMarkerDragEnd: Function, onExisitingMarkerRemove: Function }) => {
 
-  const [selectedMarkerIds, setSelectedMarkerIds] = useState([]);
+  const [selectedMarkerIds, setSelectedMarkerIds] = useState<string[]>([]);
   const [viewport, setViewport] = useState({
       width: '100vw',
       height: '100vh',
@@ -25,7 +31,7 @@ const MapComponent = ({ mapRef, markers, onExistingMarkerDragEnd, onExisitingMar
       zoom: 2.7, // Initial zoom level
   });
 
-  const handleMarkerClick = (markerId) => {
+  const handleMarkerClick = (markerId: string) => {
     // Check if the marker is already selected
     const index = selectedMarkerIds.indexOf(markerId);
     if (index === -1) {
@@ -37,7 +43,7 @@ const MapComponent = ({ mapRef, markers, onExistingMarkerDragEnd, onExisitingMar
     }
   };
 
-  const handleMarkerRemove = (markerId) => {
+  const handleMarkerRemove = (markerId: string) => {
     // Filter out the marker with the selected ID
     const filteredMarkers = markers.filter((marker) => marker.id !== markerId);
     // Update the markers state
@@ -77,7 +83,7 @@ const MapComponent = ({ mapRef, markers, onExistingMarkerDragEnd, onExisitingMar
                   className="w-4 cursor-pointer remove-icon"
                   onClick={() => onExisitingMarkerRemove(marker.id)} // Handle marker removal on 'X' icon click
                 >
-                  <svg class="w-6 h-6 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-6 h-6 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
                     <path fill-rule="evenodd" d="M2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10S2 17.523 2 12Zm7.707-3.707a1 1 0 0 0-1.414 1.414L10.586 12l-2.293 2.293a1 1 0 1 0 1.414 1.414L12 13.414l2.293 2.293a1 1 0 0 0 1.414-1.414L13.414 12l2.293-2.293a1 1 0 0 0-1.414-1.414L12 10.586 9.707 8.293Z" clip-rule="evenodd"/>
                   </svg>
                 </span>

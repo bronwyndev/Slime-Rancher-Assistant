@@ -8,7 +8,7 @@ const clientConfig = client.config();
 const config = {
   ...clientConfig,
   projectId: clientConfig.projectId || 'default_project_id',
-  dataset: clientConfig.dataset || 'default_dataset', // replace 'default_dataset' with a valid default value
+  dataset: clientConfig.dataset || 'default_dataset',
   baseUrl: 'https://cdn.sanity.io',
 };
 
