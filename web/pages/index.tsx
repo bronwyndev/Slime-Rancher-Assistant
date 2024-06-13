@@ -36,8 +36,17 @@ const Home = ({ data }: HomeProps) => {
       item: item, // Store the item data
       draggable: true,
     };
+    
+    setMarkers((prevMarkers) => {
+      const newMarkers = [...prevMarkers, newMarker];
+      localStorage.setItem('markers', JSON.stringify(newMarkers)); // Save to localStorage
+      return newMarkers;
+    });
+  };
 
-    setMarkers([...markers, newMarker]);
+  const clearMarkers = () => {
+    setMarkers([]);
+    localStorage.setItem('markers', JSON.stringify([])); // Clear localStorage
   };
 
   const handleMarkerDragEnd = (markerId: any, newCoordinates: any, event: MouseEvent) => {
@@ -51,6 +60,7 @@ const Home = ({ data }: HomeProps) => {
         return updatedMarker;
       });
       
+      localStorage.setItem('markers', JSON.stringify(updatedMarkers)); // Save to localStorage
       return updatedMarkers;
     });
 
@@ -82,6 +92,13 @@ const Home = ({ data }: HomeProps) => {
     }
   }, [data.gordoList]);
 
+  useEffect(() => {
+    const savedMarkers = localStorage.getItem('markers');
+    if (savedMarkers) {
+      setMarkers(JSON.parse(savedMarkers));
+    }
+  }, []);
+
   return (
     <div className="h-screen">
       <Modal dismissible show={openModal} onClose={() => setOpenModal(false)}>
@@ -104,6 +121,7 @@ const Home = ({ data }: HomeProps) => {
       <SidebarComponent 
         data={data} 
         onNewMarkerDragEnd={handleNewMarkerDragEnd} 
+        clearMarkers={clearMarkers}
       />
       <MapComponent
         mapRef={mapRef}
