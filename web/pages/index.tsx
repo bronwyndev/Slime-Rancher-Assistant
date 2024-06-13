@@ -57,6 +57,7 @@ const Home = ({ data }: HomeProps) => {
         return updatedMarker;
       });
       
+      localStorage.setItem('markers', JSON.stringify(updatedMarkers)); // Save to localStorage
       return updatedMarkers;
     });
 
