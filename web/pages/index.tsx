@@ -89,6 +89,13 @@ const Home = ({ data }: HomeProps) => {
     }
   }, [data.gordoList]);
 
+  useEffect(() => {
+    const savedMarkers = localStorage.getItem('markers');
+    if (savedMarkers) {
+      setMarkers(JSON.parse(savedMarkers));
+    }
+  }, []);
+
   return (
     <div className="h-screen">
       <Modal dismissible show={openModal} onClose={() => setOpenModal(false)}>
