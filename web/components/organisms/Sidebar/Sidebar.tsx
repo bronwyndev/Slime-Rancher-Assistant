@@ -25,7 +25,7 @@ interface Data {
   }[];
 }
 
-const SidebarComponent = ({ data, onNewMarkerDragEnd }: { data: Data; onNewMarkerDragEnd: Function }) => {
+const SidebarComponent = ({ data, onNewMarkerDragEnd, clearMarkers }: { data: Data; onNewMarkerDragEnd: Function, clearMarkers: Function }) => {
   
   const [isVisible, setIsVisible] = useState(true);
 
