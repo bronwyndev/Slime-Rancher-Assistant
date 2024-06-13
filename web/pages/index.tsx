@@ -36,14 +36,17 @@ const Home = ({ data }: HomeProps) => {
       item: item, // Store the item data
       draggable: true,
     };
-
-    setMarkers([...markers, newMarker]);
     
     setMarkers((prevMarkers) => {
       const newMarkers = [...prevMarkers, newMarker];
       localStorage.setItem('markers', JSON.stringify(newMarkers)); // Save to localStorage
       return newMarkers;
     });
+  };
+
+  const clearMarkers = () => {
+    setMarkers([]);
+    localStorage.setItem('markers', JSON.stringify([])); // Clear localStorage
   };
 
   const handleMarkerDragEnd = (markerId: any, newCoordinates: any, event: MouseEvent) => {
@@ -118,6 +121,7 @@ const Home = ({ data }: HomeProps) => {
       <SidebarComponent 
         data={data} 
         onNewMarkerDragEnd={handleNewMarkerDragEnd} 
+        clearMarkers={clearMarkers}
       />
       <MapComponent
         mapRef={mapRef}

@@ -134,6 +134,13 @@ const SidebarComponent = ({ data, onNewMarkerDragEnd }: { data: Data; onNewMarke
             </Sidebar.Item>
           </Sidebar.Collapse>
       </Sidebar.ItemGroup>
+        <Sidebar.ItemGroup>
+          <Sidebar.Collapse label="Tools">
+            <Sidebar.Item>
+              <button onClick={(event) => clearMarkers()}>Clear All Markers</button>
+            </Sidebar.Item>
+          </Sidebar.Collapse>
+      </Sidebar.ItemGroup>
     </Sidebar.Items>
     {isVisible && (
     <Sidebar.CTA>
