@@ -38,6 +38,12 @@ const Home = ({ data }: HomeProps) => {
     };
 
     setMarkers([...markers, newMarker]);
+    
+    setMarkers((prevMarkers) => {
+      const newMarkers = [...prevMarkers, newMarker];
+      localStorage.setItem('markers', JSON.stringify(newMarkers)); // Save to localStorage
+      return newMarkers;
+    });
   };
 
   const handleMarkerDragEnd = (markerId: any, newCoordinates: any, event: MouseEvent) => {
