@@ -29,6 +29,9 @@ function MyApp({ Component, pageProps, router }: AppProps) {
       <Head>
         <title>Slime Rancher Assistant</title>
         <meta name="viewport" content="initial-scale=1, width=device-width" />
+        <meta name="description" content="Slime Rancher Interactive Map - a visual assistant for the Slime Rancher game. Manage your ranch gadgets and slimes, see locations for Gordo Slimes, items etc." />
+        <link rel="icon" type="image/png" href="/favicon.png" />
+        <link rel="shortcut icon" type="image/x-icon" href="/favicon.png" />
       </Head>
 
       <Component {...pageProps} />;
